@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>原版界面调整小记 | AprilBlank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言早上差点儿起不来，毕竟昨天奋战那么久想用next，今天打开之后发现原版的也挺不错的，要不咬咬牙强迫自己调个界面吧。 首先打算从底部着手，毕竟整体布局上都是常规化，只是这个脚太难看了。">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原版界面调整小记">
+<meta property="og:url" content="http://yoursite.com/2018/03/08/原版界面调整小记/index.html">
+<meta property="og:site_name" content="AprilBlank">
+<meta property="og:description" content="前言早上差点儿起不来，毕竟昨天奋战那么久想用next，今天打开之后发现原版的也挺不错的，要不咬咬牙强迫自己调个界面吧。 首先打算从底部着手，毕竟整体布局上都是常规化，只是这个脚太难看了。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-29T07:28:50.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原版界面调整小记">
+<meta name="twitter:description" content="前言早上差点儿起不来，毕竟昨天奋战那么久想用next，今天打开之后发现原版的也挺不错的，要不咬咬牙强迫自己调个界面吧。 首先打算从底部着手，毕竟整体布局上都是常规化，只是这个脚太难看了。">
+  
+  
+    <link rel="icon" href="/image/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+  <body>
+    <div id="container">
+      <div id="wrap">
+        <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">AprilBlank</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">折腾是一种态度</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav" style="display: none;">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+          <div class="outer">
+            <section id="main">
+              <article id="post-原版界面调整小记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/08/原版界面调整小记/" class="article-date">
+  <time datetime="2018-03-08T01:52:10.000Z" itemprop="datePublished">2018-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      原版界面调整小记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>早上差点儿起不来，毕竟昨天奋战那么久想用next，今天打开之后发现原版的也挺不错的，要不咬咬牙强迫自己调个界面吧。</p>
+<p>首先打算从底部着手，毕竟整体布局上都是常规化，只是这个脚太难看了。<br><a id="more"></a><br>这边先观察下整体，发下其实居中就凑合能看了，就默默的在footer里面找了下</p>
+<pre><code>text-align: center;
+line-height: 20px;
+</code></pre><p>真是感觉调界面这东西不适合我，个人偏向于后端代码以及js相关的，css的话能调但是不喜欢，从来公司之初到现在后端与js<br>摸索的不少，css感觉就是个新手，额 应该说是菜鸟-_-||。</p>
+<p>调好了底部（凑合着看吧），也对右侧那一个个大方框的背景色淡化了下（虽说不明显），一看滚动条，默认的滚动条说实话看多了感觉凑合，可是到这一看受不鸟，网上搜了下，原来千言万语汇成一段话。</p>
+<pre><code>/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 12px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #5FB878;
+    /*border-radius: 10px;*/
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {    
+    /*border-radius: 10px;*/    
+    background: #5FB878;   
+-webkit-box-shadow: 
+    inset 0 0 6px #5FB878;
+}
+::-webkit-scrollbar-thumb:window-inactive {    
+    background: #5FB878;
+}
+</code></pre><p>ps:注释的只是圆角而已，看着效果不好就毙了。</p>
+<p>之后又试了下缩进，发现原版的缩进更是受不了，在网上搜了下替换了blockquote的样式。</p>
+<pre><code>font: 14px/22px normal helvetica, sans-serif;
+margin-top: 10px;
+margin-bottom: 10px;
+/*margin-left: 50px;*/
+padding-left: 15px;
+padding-top: 10px;
+padding-right: 10px;
+padding-bottom: 10px;
+border-left: 3px solid #ccc;
+background-color:#f1f1f1
+</code></pre><p>折腾了好久发现不能缩进，看别人的代码段都可以为啥我这不行，一搞发现，妈的缩进是&gt;,代码段是三个`，也是服了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/08/原版界面调整小记/" data-id="cjhrflh810007m0qicsr8ytgr" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/09/记录企业微信60111的回调信息/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          记录企业微信60111的回调信息
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/07/Hexo配置结束，也刚刚开始/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Hexo配置结束，也刚刚开始</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+            </section>
+            
+              <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/企业微信/">企业微信</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活小记/">生活小记</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/企业微信/">企业微信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/29/时隔好久，重拾旧物/">时隔好久，重拾旧物</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/12/关于Postman/">关于Postman</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/09/记录企业微信60111的回调信息/">记录企业微信60111的回调信息</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/原版界面调整小记/">原版界面调整小记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/07/Hexo配置结束，也刚刚开始/">Hexo配置结束，也刚刚开始</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">
+      友情链接
+    </h3>
+    <div class="widget">
+      <ul>
+      
+          <li>
+          <a href="http://www.m-finder.com" title="M-finder" target="_blank" rel="noopener">M-finder</a>
+          </li>
+      
+          <li>
+          <a href="http://www.yyblogs.net" title="大槐树" target="_blank" rel="noopener">大槐树</a>
+          </li>
+      
+          <li>
+          <a href="http://blog.csdn.net/qq_27948659" title="大白" target="_blank" rel="noopener">大白</a>
+          </li>
+      
+      </ul>
+    </div>
+  </div>
+
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">广告位</h3>
+    <div class="widget">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div>
+  </div>
+</aside>
+                
+          </div>
+          <footer id="footer">
+  
+        <div class="outer">
+          <div id="footer-info" class="inner">
+            <div id="footer-descrip">
+              一个程序猿的日常
+            </div>
+            <div id="footer-copy" class="outer">
+              &copy;
+              2018
+                AprilBlank<br>
+                  Powered by <a href="http://www.aprilblank.com" target="_blank">AprilBlank</a>
+            </div>
+          </div>
+        </div>
+</footer>
+            <div id="btnTop" class="btnTop">
+              <div class="btnTop-in"></div>
+            </div>
+      </div>
+      <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+        
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+  </body>
+
+  </html>
