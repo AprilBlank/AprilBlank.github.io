@@ -1347,7 +1347,7 @@ pre .javascript .function {
 #donate_guide img {
   height: 300px;
 }
-@media screen and (max-device-width: 600px) {
+@media screen and (max-device-width: 800px) {
   #donate_guide img {
     height: 150px;
   }
