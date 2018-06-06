@@ -1351,6 +1351,9 @@ pre .javascript .function {
   #donate_guide img {
     height: 150px;
   }
+  #donate_guide {
+    width: 300px;
+  }
 }
 @media screen and (min-width: 768px) {
   #sidebar {
