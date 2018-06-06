@@ -1336,16 +1336,16 @@ pre .javascript .function {
   display: none;
 }
 .post-donate {
-  margin-top: 80px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 #donate_guide {
-  height: 210px;
-  width: 420px;
+  height: 310px;
+  width: 700px;
   margin: 0 auto;
 }
 #donate_guide img {
-  height: 200px;
-  height: 200px;
+  height: 300px;
 }
 @media screen and (min-width: 768px) {
   #sidebar {
