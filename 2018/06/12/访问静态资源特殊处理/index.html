@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>访问静态资源特殊处理 | AprilBlank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言中午吃过饭，让我这边处理个问题，他在代码里面把Android和ios的安装包路径写死了，都是/×××/xxx.apk，导致的问题就是在安卓下直接是下载，到了ios环境下就是调起浏览器打开下载。">
+<meta name="keywords" content="IIS配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="访问静态资源特殊处理">
+<meta property="og:url" content="http://yoursite.com/2018/06/12/访问静态资源特殊处理/index.html">
+<meta property="og:site_name" content="AprilBlank">
+<meta property="og:description" content="前言中午吃过饭，让我这边处理个问题，他在代码里面把Android和ios的安装包路径写死了，都是/×××/xxx.apk，导致的问题就是在安卓下直接是下载，到了ios环境下就是调起浏览器打开下载。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/06/12/访问静态资源特殊处理/iis0.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/06/12/访问静态资源特殊处理/iis1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/06/12/访问静态资源特殊处理/iis2.jpg">
+<meta property="og:updated_time" content="2018-06-12T08:14:29.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="访问静态资源特殊处理">
+<meta name="twitter:description" content="前言中午吃过饭，让我这边处理个问题，他在代码里面把Android和ios的安装包路径写死了，都是/×××/xxx.apk，导致的问题就是在安卓下直接是下载，到了ios环境下就是调起浏览器打开下载。">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/12/访问静态资源特殊处理/iis0.jpg">
+  
+  
+    <link rel="icon" href="/image/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+  <body>
+    <div id="container">
+      <div id="wrap">
+        <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">AprilBlank</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">折腾是一种态度</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav" style="display: none;">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+          <div class="outer">
+            <section id="main">
+              <article id="post-访问静态资源特殊处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/12/访问静态资源特殊处理/" class="article-date">
+  <time datetime="2018-06-12T07:55:18.000Z" itemprop="datePublished">2018-06-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/IIS配置/">IIS配置</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      访问静态资源特殊处理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>中午吃过饭，让我这边处理个问题，他在代码里面把Android和ios的安装包路径写死了，都是/×××/xxx.apk，导致的问题就是在安卓下直接是下载，到了ios环境下就是调起浏览器打开下载。<br><a id="more"></a><br>比较难受的就是，他那的代码不动，想让我这边做个判断，根据浏览器环境做对应的跳转，没错，路径就是.apk，这样的路径我第一反应是没发搞，这咋玩啊浏览器根本不理我。</p>
+<p>首先第一个想法是能不能通过在Application_BeginRequest这里面根据这个路径处理，转念一想这是静态资源，根本都不会走aspx这一套玩意儿，果断把这个放弃了，坐着想了半天，真是各种绝望也不想动。</p>
+<p>后台突然想到，既然链接就这样固定没法调了，那为啥不尝试下通过iis的urlrewriter来做个重定向呢，直接固定设置这个xxx.apk那就是要重定向别处的就好了，urlrewriter下载地址会在文末给出。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>1.下载安装完成后打开iis</p>
+<p><img src="/2018/06/12/访问静态资源特殊处理/./iis0.jpg" alt="" title="iis"></p>
+<p>2.点击添加规则</p>
+<p><img src="/2018/06/12/访问静态资源特殊处理/./iis1.jpg" alt="" title="iis"></p>
+<p>3.根据自己需要编辑重定向规则</p>
+<p><img src="/2018/06/12/访问静态资源特殊处理/./iis2.jpg" alt="" title="iis"></p>
+<p>之后通过访问对应链接，果然跳转到对应的接口处理方法（当然如果还想要这个文件能访问下载的话改个名字或者规则调整下就可以了），同事通过url拦截做的处理，那个就比较厉害了，我听过但是没搞过，等啥时候我需要用到的时候整整看看，应该不会太麻烦，殊途同归，在这个东西搞出来之前我一直觉得静态资源没法做这些特殊处理，现在我发现只要想搞也需要，那就没啥搞不定的。</p>
+<h3 id="文末资源"><a href="#文末资源" class="headerlink" title="文末资源"></a>文末资源</h3><p><a href="./rewrite_iis6.rar">urlrewriter_iis6</a></p>
+<p><a href="./rewrite_iis7.rar">urlrewriter_iis7</a></p>
+
+      
+    </div>
+    <!-- 添加打赏功能 只在文章详情中显示-->
+    
+      
+        <! -- 添加捐赠图标 -->
+<div class ="post-donate">
+    <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏"></a>
+        <span class="donate_txt">
+           ↑<br>
+           觉得可以？赏口饭吃吧
+        </span>
+        <br>
+      </div>  
+    <div id="donate_guide" class="donate_bar center hidden" >
+        <!-- 方式一： 
+            ![](/img/Alipay.jpg)
+            ![](/img/WeChatpay.jpg)
+        -->
+        <!-- 方式二；
+            step1：在_config.yml中添加配置
+                Alipay: /img/Alipay.jpg
+                WeChatpay: /img/WeChatpay.jpg
+            step2：此处两张图片的路径分别设置为如下
+                <img src="/image/Alipay.jpg"
+                <img src="/image/WeChatpay.jpg"
+        -->
+        <!-- 支付宝打赏图案 -->
+        <a href="/image/Alipay.jpg" class="fancybox">
+            <img src="/image/Alipay.jpg" alt="支付宝打赏">
+        </a>
+        <!-- 微信打赏图案 -->
+        <a href="/image/WeChatpay.jpg" class="fancybox">
+            <img src="/image/WeChatpay.jpg" alt="微信打赏">
+        </a>
+    </div>
+    <script type="text/javascript">
+        document.getElementById('btn_donate').onclick = function(){
+            $('#donate_board').addClass('hidden');
+            $('#donate_guide').removeClass('hidden');
+        }
+    </script>
+</div>
+<! -- 添加捐赠图标 -->
+      
+    
+    <!-- 评论功能 -->
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzEyNy8xMzY2MQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+</div>
+    
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/12/访问静态资源特殊处理/" data-id="cjibet9pb000gkkqi16gl3y7v" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IIS配置/">IIS配置</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/07/关于不同浏览器js处理时间不同/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">关于不同浏览器js处理时间不同</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!--  -->
+            </section>
+            
+              <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IIS配置/">IIS配置</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/企业微信/">企业微信</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活小记/">生活小记</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS配置/">IIS配置</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/企业微信/">企业微信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/12/访问静态资源特殊处理/">访问静态资源特殊处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/07/关于不同浏览器js处理时间不同/">关于不同浏览器js处理时间不同</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/06/记录一次关于IIS假死的处理/">记录一次关于IIS假死的处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/29/时隔好久，重拾旧物/">时隔好久，重拾旧物</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/12/关于Postman/">关于Postman</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">
+      友情链接
+    </h3>
+    <div class="widget">
+      <ul>
+      
+          <li>
+          <a href="http://www.m-finder.com" title="M-finder" target="_blank" rel="noopener">M-finder</a>
+          </li>
+      
+          <li>
+          <a href="http://www.yyblogs.net" title="大槐树" target="_blank" rel="noopener">大槐树</a>
+          </li>
+      
+          <li>
+          <a href="http://blog.csdn.net/qq_27948659" title="大白" target="_blank" rel="noopener">大白</a>
+          </li>
+      
+          <li>
+          <a href="https://thekingstyle.github.io/" title="Wang WeiQiang" target="_blank" rel="noopener">Wang WeiQiang</a>
+          </li>
+      
+      </ul>
+    </div>
+  </div>
+
+  
+  <div class="widget-wrap">
+    <h3 class="widget-title">广告位</h3>
+    <div class="widget">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div>
+  </div>
+</aside>
+                
+          </div>
+          <footer id="footer">
+  
+        <div class="outer">
+          <div id="footer-info" class="inner">
+            <div id="footer-descrip">
+              一个程序猿的日常
+            </div>
+            <div id="footer-copy" class="outer">
+              &copy;
+              2018
+                AprilBlank<br>
+                  Powered by <a href="http://www.aprilblank.com" target="_blank">AprilBlank</a>
+            </div>
+          </div>
+        </div>
+</footer>
+            <div id="btnTop" class="btnTop">
+              <div class="btnTop-in"></div>
+            </div>
+      </div>
+      <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+        
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+  </body>
+
+  </html>
