@@ -1495,3 +1495,15 @@ pre .javascript .function {
   absolute; 
   background-color: white;
 */
+.widget .index {
+  color: #258fb8;
+}
+.widget .name {
+  font-weight: bold;
+  padding: 0 5px;
+  color: #6d6d72;
+}
+.widget .payment {
+  font-weight: bold;
+  color: #ff5404;
+}
