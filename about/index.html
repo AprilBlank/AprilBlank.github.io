@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/imgs/icon.png">
+  <link rel="icon" href="/imgs/icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -24,8 +24,8 @@
 <meta property="og:description" content="概述吧记录平时工作生活遇到的问题吧，留个念想 会点儿啥本是后端开发，搞C#、dotnet 种种原因吧，接触点儿c++、php、java、python、go 说前端吧，也倒是会写点儿js、css、vue 说只搞 web 吧，巧了，还能搞winform、wpf、qt 总的来说是，啥也会，啥也不会，干啥啥不行，跑路第一名">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/about/about/img1.jpg">
-<meta property="article:published_time" content="2022-01-01T03:04:55.579Z">
-<meta property="article:modified_time" content="2022-01-01T03:04:55.579Z">
+<meta property="article:published_time" content="2022-01-01T03:41:06.481Z">
+<meta property="article:modified_time" content="2022-01-01T03:41:06.481Z">
 <meta property="article:author" content="AprilBlank">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/about/about/img1.jpg">
@@ -79,7 +79,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>AprilBlank&#39;s Blog</strong>
+      <strong>AprilBlank</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -265,6 +265,36 @@
 
   </div>
 
+  
+    <!-- Comments -->
+    <article class="comments" id="comments" lazyload>
+      
+      
+        
+      
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"s5z5TyRMaBchMy3ctLecCTVu-gzGzoHsz","appKey":"gDTvr3YyUBoiuEkLYjSdwggm","path":"window.location.pathname","placeholder":"说点啥吧","avatar":"retro","meta":["nick","mail","link"],"requiredFields":["nick"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
   
 </article>
 
