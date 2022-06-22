@@ -4,9 +4,34 @@
   
   
   <entry>
+    <title>Qt系列教程</title>
+    <link href="/coding/qt_series.html"/>
+    <url>/coding/qt_series.html</url>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本系列主要就个人使用qt的过程做记录</p><h3 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h3><p>对于客户端开发来说，能用的客户端开发程序其实也是不少，大概列几个自己用过的吧。</p><table>    <tr>        <td>编程语言</td>        <td>GUI库</td>    </tr>    <tr>        <td rowspan="2">c++</td>        <td>mfc</td>    </tr>    <tr>        <td>qt</td>    </tr>    <tr>        <td rowspan="2">C#</td>        <td>Winform</td>    </tr>    <tr>        <td>Wpf</td>    </tr>    <tr>        <td>go</td>        <td>electron</td>    </tr></table><p>每个GUI库都有自己的特点，比如Winform与mfc更适合windows开发，Wpf也一样（界面会比那俩好操作），electron用的不是太多就不过多评价，<strong>Qt</strong>只是在这记录下，不代表它比其他几个就好，当然跨平台是个特色，另外就是集成的类库比较多（数据库，串口，tcp，统计图等等）</p><h3 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h3><p>下载安装这些就不再赘述了，个人认为如果连编程工具都装不了，面向百度、google的编程方式也不会的话，基本可以告别敲代码了。</p><p><a href="/qt/1.html">Qt系列（一）——初识界面</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>qt</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2022,新的开始</title>
-    <link href="/2022/01/04/2022-%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
-    <url>/2022/01/04/2022-%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
+    <link href="/life/new_start.html"/>
+    <url>/life/new_start.html</url>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>新的一年转眼已经来到，回头看 2021 立的 flag，做了一些，又拉下不少，西西凉凉也算是过了一年。</p><span id="more"></span><h3 id="2021-立下的-flag"><a href="#2021-立下的-flag" class="headerlink" title="2021 立下的 flag"></a>2021 立下的 flag</h3><p>程序猿</p><ul><li><input disabled="" type="checkbox"> SSO 开发</li><li><input disabled="" type="checkbox"> Util 维护</li><li><input checked="" disabled="" type="checkbox"> 基于.net5 示例工程</li><li><input disabled="" type="checkbox"> qt 工具助手开发</li><li><input disabled="" type="checkbox"> wpf 工具维护</li><li><input checked="" disabled="" type="checkbox"> 继续接单子</li></ul><p>生活</p><ul><li><input checked="" disabled="" type="checkbox"> 组装电脑</li><li><input disabled="" type="checkbox"> 带孩子</li><li><input disabled="" type="checkbox"> 减肥到 75</li></ul><h3 id="总结下"><a href="#总结下" class="headerlink" title="总结下"></a>总结下</h3><p>对于编程这块儿，总得来说进展不是太大，毕竟工作占据了大部分时间，有了孩子之后精力也明显感觉大不如从前，虽说还是二十出头，但是平均下来 5 小时的睡眠，还是有点儿扛不住啊，人不服老不行了。</p><h3 id="2022，重新开始"><a href="#2022，重新开始" class="headerlink" title="2022，重新开始"></a>2022，重新开始</h3><ul><li><input disabled="" type="checkbox"> April.Admin5 的完善</li><li><input disabled="" type="checkbox"> SSO 开发</li><li><input disabled="" type="checkbox"> qt,wpf 桌面工具开发</li><li><input disabled="" type="checkbox"> 单子不能废</li><li><input disabled="" type="checkbox"> 减肥,减肥,减肥</li></ul>]]></content>
     
