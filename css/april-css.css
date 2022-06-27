@@ -1,8 +1,1 @@
-/* 代码块样式 */
-.markdown-body .highlight pre, .markdown-body pre {
-    background-color: #272822;
-}
-
-figure.highlight td.gutter:not(.hljs) {
-    background-color: #272822;
-}
+.markdown-body .highlight pre,.markdown-body pre{background-color:#272822}figure.highlight td.gutter:not(.hljs){background-color:#272822}
