@@ -1,8 +1,9 @@
+http://www.aprilblank.top/coding/qt_series.html
+http://www.aprilblank.top/qt/dialog.html
 http://www.aprilblank.top/qt/style.html
 http://www.aprilblank.top/qt/chart.html
 http://www.aprilblank.top/qt/database.html
 http://www.aprilblank.top/qt/form.html
-http://www.aprilblank.top/coding/qt_series.html
 http://www.aprilblank.top/about/index.html
 http://www.aprilblank.top/qt/data_list.html
 http://www.aprilblank.top/qt/change_page.html

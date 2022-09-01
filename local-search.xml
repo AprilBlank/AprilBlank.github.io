@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Qt 花里胡哨系列（二）——对话框</title>
+    <link href="/qt/dialog.html"/>
+    <url>/qt/dialog.html</url>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一眨眼功夫可又过去小半个月了，感叹精力大不如从前啊，事杂而多。</p><p>这篇主要聊下qt中常见的对话框，毕竟这东西还是挺常用的，除了自己写dialog外，就属qt自带的了。</p><h3 id="QDialog"><a href="#QDialog" class="headerlink" title="QDialog"></a>QDialog</h3><p>这个在聊qt的窗口的时候已经大致说过，这里就不提太多了，主要看下qt给咱提供的对话框吧。</p><table><thead><tr><th>对话框</th><th>功能</th></tr></thead><tbody><tr><td>QFileDialog</td><td>文件/路径选择对话框</td></tr><tr><td>QColorDialog</td><td>颜色选择对话框</td></tr><tr><td>QFontDialog</td><td>字体选择对话框</td></tr><tr><td>QInputDialog</td><td>输入对话框，像html的prompt</td></tr><tr><td>QMessageBox</td><td>消息对话框，像html的alert</td></tr></tbody></table><h4 id="QFileDialog"><a href="#QFileDialog" class="headerlink" title="QFileDialog"></a>QFileDialog</h4><h5 id="选择一个文件"><a href="#选择一个文件" class="headerlink" title="选择一个文件"></a>选择一个文件</h5><p>通过QFileDialog::getOpenFileName()可以选择文件，其中参数主要标题，路径，过滤器。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++">QString title = <span class="hljs-built_in">QStringLiteral</span>(<span class="hljs-string">&quot;请选择文件&quot;</span>);<br>QString dir = <span class="hljs-string">&quot;&quot;</span>;<br>QString filter = <span class="hljs-string">&quot;*.txt;*.jpg&quot;</span>;<br>QString fileName = QFileDialog::<span class="hljs-built_in">getOpenFileName</span>(<span class="hljs-keyword">this</span>, title, dir, filter);<br><span class="hljs-keyword">if</span> (!fileName.<span class="hljs-built_in">isEmpty</span>())<br>&#123;<br>    <span class="hljs-comment">// do something</span><br>&#125;<br></code></pre></td></tr></table></figure><p>目录留空默认是程序运行目录，如果选择过文件再打开就默认是上次选择的路径，多个过滤中间用 <strong>“;”</strong> 隔开。</p><h5 id="选择多个文件"><a href="#选择多个文件" class="headerlink" title="选择多个文件"></a>选择多个文件</h5><p>参数同单个文件类似，不过方法有现成的**QFileDialog::getOpenFileNames()**。</p><h5 id="选择文件目录"><a href="#选择文件目录" class="headerlink" title="选择文件目录"></a>选择文件目录</h5><p>通过QFileDialog::getExistingDirectory()可以选择目录。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">QString title = <span class="hljs-built_in">QStringLiteral</span>(<span class="hljs-string">&quot;请选择目录&quot;</span>);<br>QString dir = <span class="hljs-string">&quot;&quot;</span>;<br>QString selectDir = QFileDialog::<span class="hljs-built_in">getExistingDirectory</span>(<span class="hljs-keyword">this</span>, title, dir);<br><span class="hljs-keyword">if</span> (!selectDir.<span class="hljs-built_in">isEmpty</span>())<br>&#123;<br>    <span class="hljs-comment">// do something</span><br>&#125;<br></code></pre></td></tr></table></figure><h5 id="选择保存文件"><a href="#选择保存文件" class="headerlink" title="选择保存文件"></a>选择保存文件</h5><p>同选择文件类似，方法为QFileDialog::getSaveFileName()，如选择已有文件会提示是覆盖。</p><h4 id="QColorDialog"><a href="#QColorDialog" class="headerlink" title="QColorDialog"></a>QColorDialog</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++">QString title = <span class="hljs-built_in">QStringLiteral</span>(<span class="hljs-string">&quot;请选择颜色&quot;</span>);<br>QColor color = QColorDialog::<span class="hljs-built_in">getColor</span>(Qt::white, <span class="hljs-keyword">this</span>, title);<br><span class="hljs-keyword">if</span> (color.<span class="hljs-built_in">isValid</span>())<br>&#123;<br>    <span class="hljs-comment">// do something</span><br>&#125;<br></code></pre></td></tr></table></figure><p>这里说明下，qt默认的都是英文的，如果需要显示中文的话，那要在qt的安装目录找到这个<strong>qt_zh_CN.qm</strong>文件添加到当前工程的资源文件，然后生成出翻译文件，通过程序加载对应的文件资源即可，这里不多说，有需要的话到时候可以跟我联系。</p><h4 id="QFontDialog"><a href="#QFontDialog" class="headerlink" title="QFontDialog"></a>QFontDialog</h4><p>字体对话框用法跟前面几个稍微不同，因为QFont自己没有是否有效这个属性，所以要通过传入一个bool值来判断是否已经选择。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">bool</span> isSuccess = <span class="hljs-literal">false</span>;<br>QFont font = QFontDialog::<span class="hljs-built_in">getFont</span>(&amp;isSuccess);<br><span class="hljs-keyword">if</span> (isSuccess)<br>&#123;<br>    <span class="hljs-comment">// do something</span><br>&#125;<br></code></pre></td></tr></table></figure><p>也可以通过传入一个QFont来作为当前选中，另外像title这种就不特别写出来演示了。</p><h4 id="QInputDialog"><a href="#QInputDialog" class="headerlink" title="QInputDialog"></a>QInputDialog</h4><p>输入对话框提供了几种输入方式：</p><ul><li>文本 <strong>QInputDialog::getText()/getMultiLineText()</strong></li><li>整型数字 <strong>QInputDialog::getInt()</strong></li><li>浮点型数字 <strong>QInputDialog::getDouble()</strong></li><li>选项 <strong>QInputDialog::getItem()</strong></li></ul><p>具体方法就不展示了，除选项需要额外输入一个选项的QStringList外，其他参数都是类似，除了返回值不同。</p><h4 id="QMessageBox"><a href="#QMessageBox" class="headerlink" title="QMessageBox"></a>QMessageBox</h4><p>消息对话框是一种比较常用的与用户交互的对话框，可以用于显示提示、警告、错误等信息供用户确认，不过其实大致看下，实际还是包含<strong>标题、内容、图标、按钮</strong>等这些常规信息，至于confirm的实现实际上也是QDialog显示一个按钮还是多个按钮的不同罢了。</p><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>感觉这篇有点儿水，毕竟对话框这种东西看代码都会用，没必要单独列出来，这篇就当给萌新了。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程</category>
+      
+      <category>qt</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>qt</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Qt 花里胡哨系列（一）——QStyleSheet</title>
     <link href="/qt/style.html"/>
     <url>/qt/style.html</url>
@@ -251,12 +278,14 @@
     <link href="/coding/qt_series.html"/>
     <url>/coding/qt_series.html</url>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本系列主要就个人使用 qt 的过程做记录</p><h3 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h3><p>对于客户端开发来说，能用的客户端开发程序其实也是不少，大概列几个自己用过的吧。</p><table>    <tr>        <td>编程语言</td>        <td>GUI库</td>    </tr>    <tr>        <td rowspan="2">c++</td>        <td>mfc</td>    </tr>    <tr>        <td>qt</td>    </tr>    <tr>        <td rowspan="2">C#</td>        <td>Winform</td>    </tr>    <tr>        <td>Wpf</td>    </tr>    <tr>        <td>go</td>        <td>electron</td>    </tr></table><p>每个 GUI 库都有自己的特点，比如 Winform 与 mfc 更适合 windows 开发，Wpf 也一样（界面会比那俩好操作），electron 用的不是太多就不过多评价，<strong>Qt</strong>只是在这记录下，不代表它比其他几个就好，当然跨平台是个特色，另外就是集成的类库比较多（数据库，串口，tcp，统计图等等）</p><h3 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h3><p>下载安装这些就不再赘述了，个人认为如果连编程工具都装不了，面向百度、google 的编程方式也不会的话，基本可以告别敲代码了，整个系列 qt 版本 5.9.2，vs2019，c++14。</p><p><a href="/qt/interface.html">Qt 系列（一）——初识界面</a><br><a href="/qt/layout.html">Qt 系列（二）——布局</a><br><a href="/qt/win.html">Qt 系列（三）——窗体</a><br><a href="/qt/change_page.html">Qt 系列（四）——界面切换</a><br><a href="/qt/data_list.html">Qt 系列（五）——数据列表</a><br><a href="/qt/form.html">Qt 系列（六）——表单</a><br><a href="/qt/database.html">Qt 系列（七）——数据库</a><br><a href="/qt/chart.html">Qt 系列（八）——统计图</a><br><a href="/qt/style.html">Qt 花里胡哨系列（一）——QStyleSheet</a><br>[Qt 花里胡哨系列（二）——对话框]<br>[Qt 花里胡哨系列（三）——自定义控件]<br>[Qt 花里胡哨系列（四）——自定义信号和槽]</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本系列主要就个人使用 qt 的过程做记录</p><h3 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h3><p>对于客户端开发来说，能用的客户端开发程序其实也是不少，大概列几个自己用过的吧。</p><table>    <tr>        <td>编程语言</td>        <td>GUI库</td>    </tr>    <tr>        <td rowspan="2">c++</td>        <td>mfc</td>    </tr>    <tr>        <td>qt</td>    </tr>    <tr>        <td rowspan="2">C#</td>        <td>Winform</td>    </tr>    <tr>        <td>Wpf</td>    </tr>    <tr>        <td>go</td>        <td>electron</td>    </tr></table><p>每个 GUI 库都有自己的特点，比如 Winform 与 mfc 更适合 windows 开发，Wpf 也一样（界面会比那俩好操作），electron 用的不是太多就不过多评价，<strong>Qt</strong>只是在这记录下，不代表它比其他几个就好，当然跨平台是个特色，另外就是集成的类库比较多（数据库，串口，tcp，统计图等等）</p><h3 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h3><p>下载安装这些就不再赘述了，个人认为如果连编程工具都装不了，面向百度、google 的编程方式也不会的话，基本可以告别敲代码了，整个系列 qt 版本 5.9.2，vs2019，c++14。</p><p><a href="/qt/interface.html">Qt 系列（一）——初识界面</a><br><a href="/qt/layout.html">Qt 系列（二）——布局</a><br><a href="/qt/win.html">Qt 系列（三）——窗体</a><br><a href="/qt/change_page.html">Qt 系列（四）——界面切换</a><br><a href="/qt/data_list.html">Qt 系列（五）——数据列表</a><br><a href="/qt/form.html">Qt 系列（六）——表单</a><br><a href="/qt/database.html">Qt 系列（七）——数据库</a><br><a href="/qt/chart.html">Qt 系列（八）——统计图</a><br><a href="/qt/style.html">Qt 花里胡哨系列（一）——QStyleSheet</a><br><a href="/qt/dialog.html">Qt 花里胡哨系列（二）——对话框</a><br>[Qt 花里胡哨系列（三）——自定义控件]<br>[Qt 花里胡哨系列（四）——自定义信号和槽]</p>]]></content>
     
     
     <categories>
       
       <category>编程</category>
+      
+      <category>qt</category>
       
     </categories>
     
